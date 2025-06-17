@@ -1,0 +1,259 @@
+#:import dp kivy.metrics.dp
+
+<WelcomeScreen>:
+    name: 'welcome'
+    FloatLayout:
+        Image:
+            source: 'welcome.png'
+            allow_stretch: True
+            keep_ratio: False
+            size: root.size
+
+<FirstScreen>:
+    name: 'first_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+
+            Label:
+                text: 'Welcome to Password Manager'
+                font_size: '20sp'
+                size_hint_y: None
+                height: dp(40)
+            Label:
+                text: 'Enter a key to protect your passwords'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: key_input
+                multiline: False
+                password: True
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Label:
+                text: 'Confirm key'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: confirm_input
+                multiline: False
+                password: True
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Button:
+                text: 'OK'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'center_x': 0.5}
+                on_release: root.confirm_key_dialogue()
+            Label:
+                id: alert_message1
+                text: ""
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            Button:
+                text: "already a user"
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'center_x': 0.5}
+                on_release: root.switch_to_second()
+
+<SecondScreen>:
+    name: 'second_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+            Label:
+                text: 'Password Manager'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            Label:
+                text: 'Enter the key:'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: key_entry
+                multiline: False
+                password: True
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Button:
+                text: 'OK'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'center_x': 0.5}
+                on_release: root.check_key()
+            Label:
+                id: alert_message2
+                text: ""
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+<ThirdScreen>:
+    name: 'third_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            id: bt_container
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+            Button:
+                id: add_entry
+                text: '+'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.4, None
+                height: dp(50)
+                pos_hint: {'right': 1}
+                on_release: root.switch_to_fourth()
+            
+<FourthScreen>
+    name: 'fourth_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+            Label:
+                text: 'Enter the purpose:'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: purpose
+                multiline: False
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Label:
+                text: 'Enter the username:'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: username
+                multiline: False
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Label:
+                text: 'Enter the password:'
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                size_hint_y: None
+                height: dp(45)
+                font_size: '18sp'
+            Button:
+                text: 'OK'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'right': 1}
+                on_release: root.check_entries() 
+            Button:
+                text: 'Cancel'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'x': 0}
+                on_release: root.cancel_storing()   
+            Label:
+                id: alert_message3
+                text: ""
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp' 
+<FifthScreen>
+    name: 'fifth_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+            Label:
+                id: user_name
+                text: ""
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            Label:
+                id: user_pass
+                text: ""
+                size_hint_y: None
+                height: dp(30)
+                font_size: '16sp'
+            Button:
+                text: 'Edit'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'x': 0}
+                on_release: root.edit_stored()
+            Button:
+                text: 'Delete'
+                font_size: '16sp'
+                background_color: [0.0, 0.5, 0.0, 1.0]
+                size_hint: 0.5, None
+                height: dp(50)
+                pos_hint: {'x': 0}
+                on_release: root.delete_stored()
+<SixthScreen>
+    name: 'sixth_entry'
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: dp(20)
+        BoxLayout:
+            id: data_display
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+            spacing: dp(15)
+
+
+        
+
+
+    
+
+
